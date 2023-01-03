@@ -73,16 +73,6 @@ class _FormWidgetState extends State<FormWidget> {
                   final name = nameEditingController.text;
                   final phone = phoneEditingController.text;
                   final email = emailEditingController.text;
-                  print(name);
-                  print(phone);
-                  print(email);
-                  // Navigator.pushNamed(context, '/result');
-                  // Navigator.push(context, MaterialPageRoute(builder: (context) => ResultWidget(person: name, ));
-                  // Navigator.push(
-                  //     context,
-                  //     MaterialPageRoute(
-                  //       builder: (context) => ResultWidget(name),
-                  //     ));
                   Navigator.of(context).push(MaterialPageRoute(builder: (context) => ResultWidget(name, phone, email)));
                 }
               },
