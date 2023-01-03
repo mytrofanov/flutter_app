@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/pages/result.dart';
 
 class FormWidget extends StatefulWidget {
   const FormWidget({super.key});
@@ -10,6 +11,7 @@ class FormWidget extends StatefulWidget {
 class _FormWidgetState extends State<FormWidget> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
+  var person ={};
   TextEditingController emailEditingController = TextEditingController();
   TextEditingController nameEditingController = TextEditingController();
   TextEditingController phoneEditingController = TextEditingController();
@@ -68,12 +70,20 @@ class _FormWidgetState extends State<FormWidget> {
                 // the form is invalid.
                 if (_formKey.currentState!.validate()) {
                   // Process data.
-                  final _name = nameEditingController.text;
-                  final _phone = phoneEditingController.text;
-                  final _email = emailEditingController.text;
-                  print(_name);
-                  print(_phone);
-                  print(_email);
+                  final name = nameEditingController.text;
+                  final phone = phoneEditingController.text;
+                  final email = emailEditingController.text;
+                  print(name);
+                  print(phone);
+                  print(email);
+                  // Navigator.pushNamed(context, '/result');
+                  // Navigator.push(context, MaterialPageRoute(builder: (context) => ResultWidget(person: name, ));
+                  // Navigator.push(
+                  //     context,
+                  //     MaterialPageRoute(
+                  //       builder: (context) => ResultWidget(name),
+                  //     ));
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => ResultWidget(name, phone, email)));
                 }
               },
               child: const Text('Submit'),

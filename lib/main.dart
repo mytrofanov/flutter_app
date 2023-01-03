@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: '/',
       routes: {
-        '/result': (context) => const ResultWidget(),
+        '/result': (context) => ResultWidget('','',''),
       },
     );
   }

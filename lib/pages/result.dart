@@ -1,29 +1,43 @@
 import 'package:flutter/material.dart';
 
 class ResultWidget extends StatefulWidget {
-  const ResultWidget({Key? key}) : super(key: key);
+  final String userName;
+  final String userPhone;
+  final String userEmail;
+  ResultWidget(this.userName, this.userEmail, this.userPhone);
 
   @override
-  State<ResultWidget> createState() => _ResultWidgetState();
+  ResultWidgetState createState() => ResultWidgetState();
 }
 
-class _ResultWidgetState extends State<ResultWidget> with SingleTickerProviderStateMixin {
-  late AnimationController _controller;
-
-  @override
-  void initState() {
-    super.initState();
-    _controller = AnimationController(vsync: this);
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
-
+class ResultWidgetState extends State<ResultWidget> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    // return Text(widget.userName); // Here you direct access using widget
+      return Scaffold(
+        appBar: AppBar(title: const Text('Second screen')),
+        body: Center(
+          child: Text(
+            widget.userName,
+            style: const TextStyle(fontSize: 24),
+          ),
+        ),
+      );
   }
 }
+  // // receive data from the FirstScreen as a parameter
+  // ResultWidget({Key key, required this.something}) : super(key: key);
+
+  // @override
+  // Widget build(BuildContext context) {
+  //   return Scaffold(
+  //     appBar: AppBar(title: const Text('Second screen')),
+  //     body: Center(
+  //       child: Text(
+  //         something,
+  //         style: const TextStyle(fontSize: 24),
+  //       ),
+  //     ),
+  //   );
+  // }
+// }
