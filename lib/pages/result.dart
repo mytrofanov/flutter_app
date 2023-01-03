@@ -54,19 +54,3 @@ class ResultWidgetState extends State<ResultWidget> {
       );
   }
 }
-  // // receive data from the FirstScreen as a parameter
-  // ResultWidget({Key key, required this.something}) : super(key: key);
-
-  // @override
-  // Widget build(BuildContext context) {
-  //   return Scaffold(
-  //     appBar: AppBar(title: const Text('Second screen')),
-  //     body: Center(
-  //       child: Text(
-  //         something,
-  //         style: const TextStyle(fontSize: 24),
-  //       ),
-  //     ),
-  //   );
-  // }
-// }
