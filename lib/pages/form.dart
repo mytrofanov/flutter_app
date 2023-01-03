@@ -33,6 +33,9 @@ class _FormWidgetState extends State<FormWidget> {
               if (value == null || value.isEmpty) {
                 return 'Please enter some text';
               }
+              if (!RegExp(r'^[a-zA-Z]{3,7}$').hasMatch(value)){
+                return 'Name is not valid';
+              }
               return null;
             },
           ),
@@ -46,6 +49,9 @@ class _FormWidgetState extends State<FormWidget> {
               if (value == null || value.isEmpty) {
                 return 'Please enter some text';
               }
+              if (!RegExp(r'\(?\d+\)?[-.\s]?\d+[-.\s]?\d+').hasMatch(value)){
+              return 'Phone is not valid';
+              }
               return null;
             },
           ),
@@ -58,6 +64,9 @@ class _FormWidgetState extends State<FormWidget> {
             validator: (String? value) {
               if (value == null || value.isEmpty) {
                 return 'Please enter some text';
+              }
+              if (!RegExp(r'^.+@[a-zA-Z]+\.{1}[a-zA-Z]+(\.{0,1}[a-zA-Z]+)$').hasMatch(value)){
+                return 'Email is not valid';
               }
               return null;
             },
