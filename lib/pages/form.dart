@@ -49,7 +49,7 @@ class _FormWidgetState extends State<FormWidget> {
               if (value == null || value.isEmpty) {
                 return 'Please enter some text';
               }
-              if (!RegExp(r'\(?\d+\)?[-.\s]?\d+[-.\s]?\d+').hasMatch(value)){
+              if (!RegExp(r'^\d{10}$').hasMatch(value)){
               return 'Phone is not valid';
               }
               return null;
