@@ -14,7 +14,9 @@ class ResultWidgetState extends State<ResultWidget> {
   @override
   Widget build(BuildContext context) {
     // return Text(widget.userName); // Here you direct access using widget
-      return Scaffold(
+      return SafeArea(
+          minimum: const EdgeInsets.fromLTRB(0, 24, 0, 0),
+    child:Scaffold(
         appBar: AppBar(title: const Text('Account Page')),
         body: Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -51,6 +53,7 @@ class ResultWidgetState extends State<ResultWidget> {
             )
           ]
         ),
+      ),
       );
   }
 }

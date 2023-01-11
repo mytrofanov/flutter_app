@@ -22,46 +22,49 @@ class AppBarApp extends StatelessWidget {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  static const String _title = 'Flutter Form Sample';
+  static const String _title = 'Flutter App Sample';
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(title: const Text(_title), actions: [
-          IconButton(
-            icon: const Icon(Icons.add_alert),
-            tooltip: 'Show Snackbar',
-            onPressed: () {
-              ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('This is a snackbar')));
-            },
-          ),
-          IconButton(
-            icon: const Icon(Icons.navigate_next),
-            tooltip: 'Go to the next page',
-            onPressed: () {
-              Navigator.push(context, MaterialPageRoute<void>(
-                builder: (BuildContext context) {
-                  return Scaffold(
-                    appBar: AppBar(
-                      title: const Text('Next page'),
-                    ),
-                    body: const Center(
-                      child: Text(
-                        'This is the next page',
-                        style: TextStyle(fontSize: 24),
-                      ),
-                    ),
-                  );
-                },
-              ));
-            },
-          ),
-        ],),
-        body: const Center(
-          child: FormWidget(),
+    return SafeArea(
+        minimum: const EdgeInsets.fromLTRB(0, 24, 0, 0),
+        child: Scaffold(
+      appBar: AppBar(title: const Text(_title), centerTitle: true, actions: [
+        IconButton(
+          icon: const Icon(Icons.add_alert),
+          tooltip: 'Show Snackbar',
+          onPressed: () {
+            ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(content: Text('This is a snackbar')));
+          },
         ),
-    );
+        IconButton(
+          icon: const Icon(Icons.navigate_next),
+          tooltip: 'Go to the form page',
+          onPressed: () {
+            Navigator.push(context, MaterialPageRoute<void>(
+              builder: (BuildContext context) {
+                return SafeArea(
+                    minimum: const EdgeInsets.fromLTRB(0, 24, 0, 0),
+                child: Scaffold(
+                  appBar: AppBar(
+                    title: const Text('Form page'),
+                  ),
+                  body: const Center(
+                    child: FormWidget(),
+                  ),
+                ),
+                );
+              },
+            ));
+          },
+        ),
+      ],),
+      body: const Center(
+        child: Text('This is the first page', style: TextStyle(fontSize: 24),),
+      ),
+    ),
+        );
   }
 }
 
