@@ -2,8 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/pages/form.dart';
 import 'package:flutter_app/pages/result.dart';
 
+void main() => runApp(const AppBarApp());
 
-void main() => runApp(const MyApp());
+class AppBarApp extends StatelessWidget {
+  const AppBarApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const MaterialApp(
+      home: MyApp(),
+    );
+  }
+}
+
+
+
+// void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -12,16 +26,41 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: _title,
-      home: Scaffold(
-        appBar: AppBar(title: const Text(_title)),
-        body: const FormWidget(),
-      ),
-      initialRoute: '/',
-      routes: {
-        '/result': (context) => ResultWidget('','',''),
-      },
+    return Scaffold(
+        appBar: AppBar(title: const Text(_title), actions: [
+          IconButton(
+            icon: const Icon(Icons.add_alert),
+            tooltip: 'Show Snackbar',
+            onPressed: () {
+              ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text('This is a snackbar')));
+            },
+          ),
+          IconButton(
+            icon: const Icon(Icons.navigate_next),
+            tooltip: 'Go to the next page',
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute<void>(
+                builder: (BuildContext context) {
+                  return Scaffold(
+                    appBar: AppBar(
+                      title: const Text('Next page'),
+                    ),
+                    body: const Center(
+                      child: Text(
+                        'This is the next page',
+                        style: TextStyle(fontSize: 24),
+                      ),
+                    ),
+                  );
+                },
+              ));
+            },
+          ),
+        ],),
+        body: const Center(
+          child: FormWidget(),
+        ),
     );
   }
 }
