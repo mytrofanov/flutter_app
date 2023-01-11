@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/pages/form.dart';
-import 'package:flutter_app/pages/minion.dart';
 
 void main() => runApp(const AppBarApp());
 
@@ -16,13 +15,40 @@ class AppBarApp extends StatelessWidget {
 }
 
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
+  @override
+  State<MyApp> createState() => MyAppWidgetState();
+}
+
+class MyAppWidgetState extends State<MyApp> {
+
   static const String _title = 'Flutter App Sample';
+  static const String firstMinion = 'https://media.tenor.com/dZXZ1B1_TVcAAAAC/minion-animated.gif';
+  static const String secondMinion = 'https://media.tenor.com/AH-wqhPOtV8AAAAC/minions-sad.gif';
+  static const String thirdMinion = 'https://media.tenor.com/f6d3D2EgFUYAAAAC/minions-cute.gif';
+
+  List minions = [];
+
+  @override
+  void initState() {
+    super.initState();
+    minions.addAll([firstMinion, secondMinion, thirdMinion]);
+  }
 
   @override
   Widget build(BuildContext context) {
+    removeMinion(index){
+      setState(() {
+        minions.removeAt(index);
+      });
+    }
+    addMinion(){
+      setState(() {
+        minions.add(firstMinion);
+      });
+    }
     return SafeArea(
         minimum: const EdgeInsets.fromLTRB(0, 24, 0, 0),
         child: Scaffold(
@@ -57,10 +83,28 @@ class MyApp extends StatelessWidget {
           },
         ),
       ],),
-      body: const Center(
-        child: MinionWidget(),
+      body: ListView.builder(
+            itemCount: minions.length,
+            itemBuilder: (BuildContext context, int index) {
+              // return Image(image: minions[index]);
+              return Dismissible(
+                key:  Key(minions[index]),
+                child: ListTile(
+                  title: Text('Minion #${index + 1}'),
+                  subtitle: Image(
+                    image: NetworkImage(minions[index]),
+                  ),
+                ),
+                onDismissed: (direction){
+                  setState(() {
+                    minions.removeAt(index);
+                  });
+                },
+              );
+            },
+        ),
         // child: Text('This is the first page', style: TextStyle(fontSize: 24),),
-      ),
+
           bottomNavigationBar: BottomAppBar(
             child: Padding(
               padding: const EdgeInsets.all(8),
@@ -69,19 +113,10 @@ class MyApp extends StatelessWidget {
                 alignment: MainAxisAlignment.center,
                 overflowSpacing: 5.0,
                 children: <Widget>[
-                  ElevatedButton.icon(
-                    onPressed: () {
-
-                    },
-                    icon: const Icon(
-                      Icons.home
-                    ),
-                    label: const Text('Home Page'),
-                  ),
                   const SizedBox(width: 5),
                   ElevatedButton.icon(
                     onPressed: () {
-
+                      addMinion();
                     },
                     icon: const Icon(Icons.add),
                     label: const Text(
