@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/pages/form.dart';
-import 'package:flutter_app/pages/result.dart';
+import 'package:flutter_app/pages/minion.dart';
 
 void main() => runApp(const AppBarApp());
 
@@ -15,9 +15,6 @@ class AppBarApp extends StatelessWidget {
   }
 }
 
-
-
-// void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -61,8 +58,40 @@ class MyApp extends StatelessWidget {
         ),
       ],),
       body: const Center(
-        child: Text('This is the first page', style: TextStyle(fontSize: 24),),
+        child: MinionWidget(),
+        // child: Text('This is the first page', style: TextStyle(fontSize: 24),),
       ),
+          bottomNavigationBar: BottomAppBar(
+            child: Padding(
+              padding: const EdgeInsets.all(8),
+              child: OverflowBar(
+                overflowAlignment: OverflowBarAlignment.center,
+                alignment: MainAxisAlignment.center,
+                overflowSpacing: 5.0,
+                children: <Widget>[
+                  ElevatedButton.icon(
+                    onPressed: () {
+
+                    },
+                    icon: const Icon(
+                      Icons.home
+                    ),
+                    label: const Text('Home Page'),
+                  ),
+                  const SizedBox(width: 5),
+                  ElevatedButton.icon(
+                    onPressed: () {
+
+                    },
+                    icon: const Icon(Icons.add),
+                    label: const Text(
+                      'Minion',
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
     ),
         );
   }
